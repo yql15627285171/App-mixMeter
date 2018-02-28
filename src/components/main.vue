@@ -1,22 +1,6 @@
+<!-- 这是主界面 -->
 <template>
   <div class="main">
-   <!--  <div class="electricity item">
-      <img src="../assets/electricity.png">
-      <span class="item-font">电费</span>
-    </div>
-    <div class="water item">
-      <img src="../assets/water.png">
-      <span class="item-font">水费</span>
-    </div>
-    <div class="gas item">
-      <img src="../assets/gas.png">
-      <span class="item-font">燃气费</span>
-    </div>
-    <div class="hot item">
-      <img src="../assets/hot.png">
-      <span class="item-font">暖热费</span>
-    </div> -->
-
   <div class="weui-tab">
     <div class="weui-tab__panel">
       <keep-alive>
@@ -75,32 +59,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-/*.main{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
 
-.item{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 33.3%;
-  height: 100px;
-  background-color: #fff;
-  border: 0.5px solid #f0f0f0;
-
-}
-
-.item-font{
-  margin-top: 10px;
-}
-
-img{
-  width: 30px;
-  height: 30px;
-}*/
 
 .main{
   height: 100%;

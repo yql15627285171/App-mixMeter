@@ -3,26 +3,34 @@ import Router from 'vue-router'
 import main from '@/components/main'
 import register from '@/components/register'
 import choosePage from '@/components/choosePage'
+import authority from '@/components/authority'
 
 import myFunction from '@/components/function'
 import info from '@/components/information'
 import userNumber from '@/components/function/user-number'
 import bill from '@/components/function/bill'
+import bindRoom from '@/components/information/bindRoom'
+
 
 Vue.use(Router)
 
 export default new Router({
   model:'history',
   routes: [
+    // {
+    //   path: '/',
+    //   redirect:'/register'
+    // },
     {
       path: '/',
-      redirect:'/register'
+      name:'authority',
+      component:authority
     },
-    // {
-    //   path: '/choosePage',
-    //   name:'choosePage',
-    //   component:choosePage
-    // },
+    {
+      path:'/choosePage',
+      name:'choosePage',
+      component:choosePage
+    },
     {
       path:'/register',
       name:'register',
@@ -56,6 +64,11 @@ export default new Router({
       path:'/function/bill',
       name:'bill',
       component:bill
+    },
+    {
+      path:'/info/bindRoom',
+      name:'bindRoom',
+      component:bindRoom
     }
 
   ]
