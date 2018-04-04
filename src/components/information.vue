@@ -1,9 +1,12 @@
 <!-- 我的信息的界面 -->
 <template>
-	<div>
+	<div class="wrap">
+		<!-- 加载 -->
+    	<v-toast :show='loading'></v-toast>
+
 		<div class="header">
 			<div class="header-avatar">
-				<img src="../assets/avatar.png" class="header-img">
+				<img :src="headUrl" class="header-img">
 			</div>
 			<span class="header-name">Darian</span>
 		</div>
@@ -14,69 +17,65 @@
 	        <div class="weui-cell__bd">
 	            <p>账户名</p>
 	        </div>
-	        <div class="weui-cell__ft">Hello Ketty</div>
+	        <div class="weui-cell__ft">{{userId}}</div>
 	    </a>
 
 		<a class="weui-cell" href="javascript:;">
 	        <div class="weui-cell__bd">
 	            <p>姓名</p>
 	        </div>
-	        <div class="weui-cell__ft">张三</div>
+	        <div class="weui-cell__ft">{{userInfo.UserName}}</div>
 	    </a>
 
 		<a class="weui-cell" href="javascript:;">
 	        <div class="weui-cell__bd">
 	            <p>性别</p>
 	        </div>
-	        <div class="weui-cell__ft">男</div>
+	        <div class="weui-cell__ft">{{userInfo.Sex}}</div>
 	    </a>
 		
 	</div>
 
 	<div class="weui-cells__title"></div>
 	<div class="weui-cells">
-	    <a class="weui-cell weui-cell_access" href="javascript:;">
-	        <div class="weui-cell__bd">
+		<router-link :to="{name:'resetPhone',params:{data:userInfo}}" class="weui-cell weui-cell_access">
+			<div class="weui-cell__bd">
 	            <p>电话</p>
 	        </div>
-	        <div class="weui-cell__ft">15627288888</div>
-	    </a>
+	        <div class="weui-cell__ft">{{userInfo.MobilePhone}}</div>
+		</router-link>
 
 		<a class="weui-cell weui-cell_access" href="javascript:;">
 	        <div class="weui-cell__bd">
 	            <p>扣款卡号</p>
 	        </div>
-	        <div class="weui-cell__ft">未设置</div>
+	        <div class="weui-cell__ft">{{userInfo.BankCardNum}}</div>
 	    </a>
-
-	    <a class="weui-cell weui-cell_access" href="javascript:;">
-	        <div class="weui-cell__bd">
+	
+		<router-link :to="{name:'resetAddress',params:{data:userInfo}}" class="weui-cell weui-cell_access">
+			<div class="weui-cell__bd">
 	            <p>联系地址</p>
 	        </div>
-	        <div class="weui-cell__ft">未设置</div>
-	    </a>
+	        <div class="weui-cell__ft">{{userInfo.CustomerAddress}}</div>
+		</router-link>
 
-	   	<a class="weui-cell weui-cell_access" href="javascript:;">
-	        <div class="weui-cell__bd">
+	
+		<router-link :to="{name:'resetPsd'}" class="weui-cell weui-cell_access">
+			<div class="weui-cell__bd">
 	            <p>修改密码</p>
 	        </div>
 	        <div class="weui-cell__ft"></div>
-	    </a>
+		</router-link>
+	   
 	</div>
 
 	<div class="weui-cells__title"></div>
 	<div class="weui-cells">
-	    <a class="weui-cell weui-cell_access" href="javascript:;">
+	    <a class="weui-cell weui-cell_access" href="javascript:;" v-for="item in houseInfo">
 	        <div class="weui-cell__bd">
-	            <p>罗湖区/莲塘枫景/A栋/1701</p>
+	            <p>房间</p>
 	        </div>
-	        <div class="weui-cell__ft"></div>
-	    </a>
-	    <a class="weui-cell weui-cell_access" href="javascript:;">
-	        <div class="weui-cell__bd">
-	            <p>罗湖区/鹏兴花园/A栋/801</p>
-	        </div>
-	        <div class="weui-cell__ft"></div>
+	        <div class="weui-cell__ft">{{houseInfo.HouseName}}</div>
 	    </a>
 	 </div>
 
@@ -84,10 +83,76 @@
 	</div>
 </template>
 <script>
-	
+import vToast from './baseComp/toast'
+export default {
+  components:{
+    vToast
+  },
+  data(){
+  	return{
+  		loading:false,
+  		userInfo:{},
+  		houseInfo:[],
+  		headUrl:window.sessionStorage.getItem('headImgUrl'),
+  		userId:window.sessionStorage.getItem('id')
+  	}
+  },
+  methods:{
+	/**
+    *获取当前用户的表计状态和个人信息
+    */
+    QureyMeterCurrentStatusByUserId(){
+      this.loading = true
+      var params = {
+        UserId:window.sessionStorage.getItem('id'),
+        MeterKindId:'1',
+        time:this.dataUtil.formatTime1(new Date()),
+      }
+      // console.log(params)
+
+       var encryptParams = {
+        evalue:this.$encrypt(JSON.stringify(params))
+      }
+
+      // console.log(encryptParams)
+
+      this.http.post(this.api.baseUrl+this.api.QureyMeterCurrentStatusByUserId,encryptParams)
+      .then(result=>{
+        console.log(result)
+        this.loading = false
+        if (result.status == '成功') {
+          this.userInfo = result.UserInfo[0]
+
+          Object.keys(this.userInfo).forEach(key=>{
+          	if (this.userInfo[key] == '') {
+          		this.userInfo[key] = '未设置'
+          	}
+        	
+		  })
+
+          this.houseInfo = result.HouseInfo
+
+
+        }
+                
+      })
+    },
+
+  },
+
+
+  mounted(){
+  	
+  },
+  activated(){
+  	this.QureyMeterCurrentStatusByUserId()
+  }
+}
 </script>
 
 <style scoped>
+
+
 .header{
 	background-color: #e54c46;
 	height: 120px;
@@ -100,14 +165,28 @@
 .header-avatar{
 	background: #fff;
 	margin-bottom: 10px;
+	width: 50px;
+	height: 50px;
 	border-radius: 25px;
 }
 .header-img{
 	height: 50px;
 	width: 50px;
+	border-radius: 25px;
 }
 
 .btn{
 	margin: 40px 10px;
 }
+
+/*.weui-cells{
+	background-color: rgba(0, 0, 0, 0)
+}*/
+
+/*箭头颜色*/
+/*.weui-cell__bd:after,
+.weui-cell_access .weui-cell__ft:after
+{
+	border-color: #000;
+}*/
 </style>

@@ -34,7 +34,7 @@ axios.interceptors.response.use(response => {
 
 
 function checkStatus (response) {
-  console.log(response)
+  // console.log(response)
   // 这里可以做一些动作，例如结束菊花
 
   /*
@@ -52,7 +52,8 @@ function checkStatus (response) {
   
   // 如果http状态码正常，则直接返回数据
   if (response && (response.status === 200 || response.status === 304 || response.status === 400)) {
-    return response
+    
+    return JSON.parse(response.data.replace(/<[^>]+>/g, "")) 
     // 如果不需要除了data之外的数据，可以直接 return response.data
   }else {
 
@@ -83,12 +84,10 @@ export default {
     return axios({
       method: 'post',
       url:url,
-      baseURL: 'https://www.stsidea.com/weixin.asmx',
       data: qs.stringify(data),
       timeout: 10000,
       headers: {
-        // 'X-Requested-With': 'XMLHttpRequest',
-        "Access-Control-Allow-Origin":"*"
+        'content-type': 'application/x-www-form-urlencoded',
       }
     }).then(checkStatus).then(checkCode)
   },

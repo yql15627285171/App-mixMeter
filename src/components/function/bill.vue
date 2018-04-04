@@ -16,8 +16,8 @@
     </div>
     <div class="weui-msg__opr-area">
         <p class="weui-btn-area">
-            <a href="javascript:history.back();" class="weui-btn weui-btn_primary">充值</a>
-            <a href="javascript:history.back();" class="weui-btn weui-btn_warn">流水账</a>
+        	<router-link :to="{name:'moneyDetails'}" class="weui-btn weui-btn_primary">流水账</router-link>
+           
         </p>
     </div>
     <div class="weui-msg__extra-area">

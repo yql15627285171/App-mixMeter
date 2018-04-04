@@ -4,20 +4,29 @@ export default{
   install(Vue,options){
      Vue.prototype.$encrypt =  function(data) {
    
-	    var key = CryptoJS.enc.Latin1.parse('j>r%T.w8#7*6J\"r%T.w8#7*6');
-	    var iv = CryptoJS.enc.Latin1.parse('a@ss<_2et.T^&r\"j');
+	    var key = CryptoJS.enc.Latin1.parse('j>r%T.w8#7*6J\"t%i#o8#7*6');
+	    var iv = CryptoJS.enc.Latin1.parse('T@Rj<_2io.T^&t\"j');
 	    
 	    var ADEData
 	    if(data == null){
 	      ADEData = dataUtil.formatTime1(new Date())
 	      // ADEData = '2017-10-31 15:31:02'
 	    }else{
-	      ADEData = data +'$'+ dataUtil.formatTime1(new Date())
+	      ADEData = data
 	    }
 	    // console.log(ADEData)
 	    return CryptoJS.AES.encrypt(ADEData, key, { iv: iv, mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.ZeroPadding }).toString();
-		}
+		},
 
+
+		Vue.prototype.$encryptPsd =  function(data) {
+   
+	    var key = CryptoJS.enc.Latin1.parse('j>r%T.w8#8*8J\"t%i#o8#8*8');
+	    var iv = CryptoJS.enc.Latin1.parse('T@Rj<_2sb.T^&t\"j');
+	    
+	  
+	    return CryptoJS.AES.encrypt(data, key, { iv: iv, mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.ZeroPadding }).toString();
+		}
 
 		
 	 }

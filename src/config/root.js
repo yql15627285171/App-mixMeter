@@ -28,3 +28,9 @@ Vue.prototype.api = api
 */
 import Encrypt from './AES/myAES'
 Vue.use(Encrypt)
+
+/**
+*格式化时间
+*/
+import dataUtil from './AES/Date'
+Vue.prototype.dataUtil = dataUtil
