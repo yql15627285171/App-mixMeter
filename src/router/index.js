@@ -4,6 +4,7 @@ import main from '@/components/main'
 import register from '@/components/register'
 import choosePage from '@/components/choosePage'
 import authority from '@/components/authority'
+
 // 功能
 import myFunction from '@/components/function'
 import bill from '@/components/function/bill'
@@ -12,10 +13,14 @@ import useDetails from '@/components/function/useDetails'
 
 // 信息
 import info from '@/components/information'
-import bindRoom from '@/components/information/bindRoom'
 import resetPsd from '@/components/information/resetPsd'
 import resetPhone from '@/components/information/resetPhone'
 import resetAddress from '@/components/information/resetAddress'
+
+// 房间
+import house from '@/components/house'
+import bindRoom from '@/components/house/bindRoom'
+import unbindRoom from '@/components/house/unbindRoom'
 
 
 Vue.use(Router)
@@ -28,6 +33,11 @@ const router = new Router({
       name:'authority',
       component:authority
     },
+    // {
+    //   path: '/',
+    //   name:'register',
+    //   component:register
+    // },
     {
       path:'/choosePage',
       name:'choosePage',
@@ -59,6 +69,15 @@ const router = new Router({
           path:'function',
           name:'function',
           component:myFunction,
+          meta:{
+            requireAuth:true
+          },
+
+        },
+        {
+          path:'house',
+          name:'house',
+          component:house,
           meta:{
             requireAuth:true
           },
@@ -103,9 +122,18 @@ const router = new Router({
 
     },
     {
-      path:'/info/bindRoom',
+      path:'/house/bindRoom',
       name:'bindRoom',
       component:bindRoom,
+      meta:{
+        requireAuth:true
+      },
+
+    },
+    {
+      path:'/house/unbindRoom',
+      name:'unbindRoom',
+      component:unbindRoom,
       meta:{
         requireAuth:true
       },

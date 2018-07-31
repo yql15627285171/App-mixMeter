@@ -13,7 +13,7 @@
 
 					
 
-        </div>  
+      </div>  
 
 
 
@@ -52,7 +52,6 @@ export default {
           var params = {
             MobilePhone:this.userInfo.MobilePhone,
             UserId :window.sessionStorage.getItem('id'),
-            // UserId:'user01',
             UserName:this.userInfo.UserName,
             CustomerAddress:this.address,
             time:this.dataUtil.formatTime1(new Date())
@@ -63,11 +62,10 @@ export default {
           var encryptParams = {
             evalue:this.$encrypt(JSON.stringify(params))
           }
-          console.log(this.api.baseUrl+this.api.UpdateUserInfo)
 
           console.log(this.$encrypt(JSON.stringify(params)))
 
-          this.http.post(this.api.baseUrl+this.api.UpdateUserInfo,encryptParams)
+          this.http.post(this.api.baseUrl+this.api.UpdateUserAddress,encryptParams)
           .then(result=>{
             this.loading = false
             console.log(result)

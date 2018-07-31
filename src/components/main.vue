@@ -15,6 +15,11 @@
             <img :src=functionImage alt="" class="weui-tabbar__icon">
             <p class="weui-tabbar__label">功能</p>
           </router-link>
+          
+          <router-link :to="{name:'house'}" class="weui-tabbar__item" active-class='weui-bar__item_on' @click.native="changeImage('house')">
+            <img :src=houseImage alt="" class="weui-tabbar__icon">
+            <p class="weui-tabbar__label">房间</p>
+          </router-link>
 
           <router-link :to="{name:'info'}" class="weui-tabbar__item" active-class='weui-bar__item_on' @click.native="changeImage('my')">
             <img :src=myImage alt="" class="weui-tabbar__icon">
@@ -41,7 +46,8 @@ export default {
       loading:false,
       hasHouse:false,
       functionImage:'',
-      myImage:''
+      myImage:'',
+      houseImage:''
     }
   },
   // 方法集合
@@ -50,12 +56,18 @@ export default {
     *改变图标
     */
     changeImage:function(name){
-        if (name=='function') {
+      if (name=='function') {
           this.functionImage = require('../assets/function_select.png')
           this.myImage=require('../assets/my_unselect.png') 
-       }else {
+          this.houseImage=require('../assets/house_unselect.png')
+       }else if (name=='my') {
           this.functionImage = require('../assets/function_unselect.png')
           this.myImage=require('../assets/my_select.png')
+          this.houseImage=require('../assets/house_unselect.png')
+       }else if (name=='house') {
+          this.functionImage = require('../assets/function_unselect.png')
+          this.myImage=require('../assets/my_unselect.png')
+          this.houseImage=require('../assets/house_select.png')
        }
     },
 
@@ -75,6 +87,8 @@ export default {
         this.changeImage('function')
       }else if(newVal == '/main/info'){
         this.changeImage('my')
+      }else if(newVal == '/main/house'){
+        this.changeImage('house')
       }
     }
   },
@@ -87,7 +101,9 @@ export default {
         this.changeImage('function')
     }else if(this.$route.path == '/main/info'){
         this.changeImage('my')
-    }
+    }else if(this.$route.path== '/main/house'){
+        this.changeImage('house')
+      }
 
   }
 

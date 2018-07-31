@@ -12,14 +12,14 @@ export default{
 	},
 	methods:{
 		// 获取路径中的值
-		 GetQueryString(name){
+		GetQueryString(name){
 		     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
 		     var r = window.location.search.substr(1).match(reg);
 		     if(r!=null)return  unescape(r[2]); return null;
 		},
 
 		// 发送code值，获取用户是否已存在
-		 loadBympCode(){
+		loadBympCode(){
 		 	var params = {
 		 		mpCode:this.code,
 		 		time:this.dataUtil.formatTime1(new Date())
@@ -33,6 +33,7 @@ export default{
 		 	console.log(encryptParams);
 
 		 	this.http.post(this.api.baseUrl+this.api.LoadBympCode,encryptParams)
+		 	
 		 	.then(result=>{
 		 		// var result= JSON.parse(res.data.replace(/<[^>]+>/g, ""))
 		 		console.log(result);

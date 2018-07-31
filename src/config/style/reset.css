@@ -178,16 +178,16 @@ summary {
     display: block;
 }
  
-@media screen and (min-width:100px){ /*  iPhone 4,5 */
+@media screen and (min-width:100px){ 
  html{ font-size: 10px;}
 }
-@media screen and (min-width:320px){ /*  iPhone 4,5 */
+@media screen and (min-width:320px){ 
  html{ font-size: 10px;}
 }
-@media screen and (min-width:375px){ /*  iPhone 6 */
+@media screen and (min-width:375px){ 
  html{ font-size: 12px;}
 }
-@media screen and (min-width:414px){  /*  iPhone 6 plus */
+@media screen and (min-width:414px){  
  html{ font-size: 12px;}
 }
 @media screen and (min-width:600px){

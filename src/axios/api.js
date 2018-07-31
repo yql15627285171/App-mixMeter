@@ -4,23 +4,28 @@ export default {
    /**
    *基本路径
    */
-   // baseUrl:'https://www.trjiot.com/webiot.asmx',
 
    // 泰瑞捷
    baseUrl:'http://api.smart.trjiot.com/webiot.asmx',
+
+   // 申特
+   // baseUrl:'https://www.trjiot.com/webiot.asmx',
+
+  
 
    /*测试接口
    *openid             微信openid
    **返回参数**           
    *Flg
-   *
-RegionCode
-   *
-headimgurl电话
+   *RegionCode
+   *headimgurl电话
    */
    LoadBympOpenidForTest:'/LoadBympOpenidForTest',
 
-   url:'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx79b555e9247591b2&redirect_uri=http%3a%2f%2fmp.smart.trj-china.com%2f%23%2fchoosePage&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect',
+   // 泰瑞捷公众号
+   url:'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx79b555e9247591b2&redirect_uri=http%3a%2f%2fmp.trj.trjiot.com%2f%23%2fchoosePage&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect',
+   // 申特公众号
+   // url:'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx2116ee6faa2b9cc0&redirect_uri=http%3a%2f%2fmp.smart.trj-china.com%2f%23%2fchoosePage&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect',
 
    /**
    *获取回调url
@@ -68,6 +73,17 @@ headimgurl电话
    QureyMeterCurrentStatusByUserId:'/QureyMeterCurrentStatusByUserId',
 
    /**
+   *查询用户信息
+   *UserId             用户名 
+   *MeterKindId        表计类型1电表
+   *time               时间格式与以前相同 不用加密           
+   */
+   QureyUserByUserId:'/QureyUserByUserId',
+
+
+
+
+   /**
    *获取省市区社区
    *RegionCode         第一级列表时传0，其他级别传上级的regionCode
    *time               时间格式与以前相同 不用加密
@@ -113,14 +129,103 @@ headimgurl电话
    UpdateUserPassWord:'/UpdateUserPassWord',
 
    /**
-   *修改个人信息： 名称、电话、地址
+   *修改地址
    *MobilePhone        电话
    *UserId             用户名
    *UserName           姓名
    *CustomerAddress    地址
    *time               时间格式与以前相同 不用加密
    */
-   UpdateUserInfo:'/UpdateUserInfo',
+   UpdateUserAddress :'/UpdateUserAddress',
+
+   /**
+   *修改地址
+   *MobilePhone        电话
+   *UserId             用户名
+   *UserName           姓名
+   *CustomerAddress    地址
+   *vCode              验证码
+   *time               时间格式与以前相同 不用加密
+   */
+   UpdateUserMoblie :'/UpdateUserMoblie',
+
+
+
+
+   /**
+   *获取手机验证码
+   *mobile             手机号
+   *time               当前时间
+   **返回参数**    
+    *成功或失败及信息
+   */
+   VerificationCode:'/VerificationCode',
+
+   /**
+   *客户电量数据查询
+   *HouseRegionCode      房间码
+   *time        时间
+   **返回参数**
+      **status  成功或失败
+      **data    数据
+       *** EData  电能数据
+        ****ELastDay 最近一天的用电情况
+         *****FreezeDate 时标
+         *****TotalPow 总量
+         *****Power1 尖量
+         *****Power2 峰量
+         *****Power3 平量
+         *****Power4 谷量
+        ****EMonth 月电能（12月）
+         *****FreezeDate 时标
+         *****TotalPow 总量
+        ****EDay 日电能（30天）
+         *****FreezeDate 时标
+         *****TotalPow 总量
+   */
+   QureyEFDataForUser:'/QureyEFDataForUser',
+
+   /**
+   *客户交易流水账查询
+   *HouseRegionCode      房间码
+   *time        时间
+   **返回参数**
+      **status  成功或失败
+      **data    数据
+       ***index    序号
+       ***TransactionOrder    交易订单号
+       ***TransactionType     交易类型
+       ***TransactionAmount   交易金额
+       ***TransactionMode     交易途径
+       ***TransactionMethod   交易方法
+       ***TransactionTime     交易时间
+   */
+   QueryMDForUser:'/QueryMDForUser',
+
+   /**
+   *根据用户ID获取房屋审核信息
+   *UserId       用户ID  
+   *time        时间
+   **返回参数**           
+   *Apply      返回“申请” 列表
+   **FiveAndHouseName  名称
+   **HouseRegionCode 六级码
+   *Check      返回“审核” 列表
+   **FiveAndHouseName  名称
+   **HouseRegionCode 六级码
+   */
+   QueryUserHouseInfoByID:'/QueryUserHouseInfoByID',
+
+   /**
+   *解除用户房间信息
+   *UserId       用户ID  
+   *HouseRegionCode      房间码
+   *time        时间
+   **返回参数**           
+   *返回“成功”“失败”
+   */
+   DeleteUserHouseInfo:'/DeleteUserHouseInfo'
+
 
 
 }

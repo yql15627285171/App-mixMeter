@@ -8,17 +8,12 @@
 			<div class="header-avatar">
 				<img :src="headUrl" class="header-img">
 			</div>
-			<span class="header-name">Darian</span>
+			<span class="header-name">{{userId}}</span>
 		</div>
 
-	 <div class="weui-cells__title"></div>
-	 <div class="weui-cells">
-	 	<a class="weui-cell" href="javascript:;">
-	        <div class="weui-cell__bd">
-	            <p>账户名</p>
-	        </div>
-	        <div class="weui-cell__ft">{{userId}}</div>
-	    </a>
+	<div class="weui-cells__title"></div>
+	<div class="weui-cells">
+
 
 		<a class="weui-cell" href="javascript:;">
 	        <div class="weui-cell__bd">
@@ -42,21 +37,21 @@
 			<div class="weui-cell__bd">
 	            <p>电话</p>
 	        </div>
-	        <div class="weui-cell__ft">{{userInfo.MobilePhone}}</div>
+	        <div class="weui-cell__ft"></div>
 		</router-link>
 
 		<a class="weui-cell weui-cell_access" href="javascript:;">
 	        <div class="weui-cell__bd">
 	            <p>扣款卡号</p>
 	        </div>
-	        <div class="weui-cell__ft">{{userInfo.BankCardNum}}</div>
+	        <div class="weui-cell__ft"></div>
 	    </a>
 	
 		<router-link :to="{name:'resetAddress',params:{data:userInfo}}" class="weui-cell weui-cell_access">
 			<div class="weui-cell__bd">
 	            <p>联系地址</p>
 	        </div>
-	        <div class="weui-cell__ft">{{userInfo.CustomerAddress}}</div>
+	        <div class="weui-cell__ft"></div>
 		</router-link>
 
 	
@@ -69,17 +64,17 @@
 	   
 	</div>
 
-	<div class="weui-cells__title"></div>
+	<!-- <div class="weui-cells__title"></div>
 	<div class="weui-cells">
 	    <a class="weui-cell weui-cell_access" href="javascript:;" v-for="item in houseInfo">
 	        <div class="weui-cell__bd">
-	            <p>房间</p>
+	            <p>{{item.HouseName}}</p>
 	        </div>
-	        <div class="weui-cell__ft">{{houseInfo.HouseName}}</div>
+	        <div class="weui-cell__ft"></div>
 	    </a>
 	 </div>
 
-	<router-link :to="{name:'bindRoom'}" class="weui-btn weui-btn_primary btn">绑定房间</router-link>
+	<router-link :to="{name:'bindRoom'}" class="weui-btn weui-btn_primary btn">绑定房间</router-link> -->
 	</div>
 </template>
 <script>
@@ -101,7 +96,7 @@ export default {
 	/**
     *获取当前用户的表计状态和个人信息
     */
-    QureyMeterCurrentStatusByUserId(){
+    QureyUserByUserId(){
       this.loading = true
       var params = {
         UserId:window.sessionStorage.getItem('id'),
@@ -114,25 +109,16 @@ export default {
         evalue:this.$encrypt(JSON.stringify(params))
       }
 
-      // console.log(encryptParams)
+      console.log(encryptParams)
 
-      this.http.post(this.api.baseUrl+this.api.QureyMeterCurrentStatusByUserId,encryptParams)
+      this.http.post(this.api.baseUrl+this.api.QureyUserByUserId,encryptParams)
       .then(result=>{
         console.log(result)
         this.loading = false
         if (result.status == '成功') {
-          this.userInfo = result.UserInfo[0]
-
-          Object.keys(this.userInfo).forEach(key=>{
-          	if (this.userInfo[key] == '') {
-          		this.userInfo[key] = '未设置'
-          	}
-        	
-		  })
-
-          this.houseInfo = result.HouseInfo
-
-
+        	this.userInfo = result.UserInfo[0]
+          	this.houseInfo = result.HouseInfo
+  
         }
                 
       })
@@ -141,11 +127,8 @@ export default {
   },
 
 
-  mounted(){
-  	
-  },
   activated(){
-  	this.QureyMeterCurrentStatusByUserId()
+  	this.QureyUserByUserId()
   }
 }
 </script>

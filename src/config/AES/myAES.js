@@ -27,7 +27,6 @@ export default{
 	  
 	    return CryptoJS.AES.encrypt(data, key, { iv: iv, mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.ZeroPadding }).toString();
 		}
-
 		
 	 }
 }

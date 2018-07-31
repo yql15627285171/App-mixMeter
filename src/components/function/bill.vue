@@ -10,8 +10,8 @@
     	<img src="../../assets/money.png" alt="">
     </div>
     <div class="weui-msg__text-area">
-    	<p class="weui-msg__desc">{{$route.params.type}}费余额</p>
-        <h2 class="weui-msg__title">¥{{money}}</h2>
+    	<p class="weui-msg__desc">{{feeType}}费余额</p>
+        <h2 class="weui-msg__title">{{feeValue}}元</h2>
         
     </div>
     <div class="weui-msg__opr-area">
@@ -35,7 +35,9 @@
 export default{
 	data(){
 		return{
-			money:"-123.45"
+			feeType:window.sessionStorage.getItem('feeType'),
+			feeValue:window.sessionStorage.getItem('feeValue')
+		
 		}
 	}
 }
