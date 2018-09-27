@@ -46,9 +46,9 @@
         <div class="weui-cell__hd"><label class="weui-label">手机号</label></div>
         <div class="weui-cell__bd">
             <input class="weui-input" type="number" pattern="[0-9]*" placeholder="请输入手机号" v-model.trim="mobile"/>
-        </div>  
+        </div>
       </div>
-      
+
       <div class="weui-cell weui-cell_vcode">
         <div class="weui-cell__hd">
             <label class="weui-label">验证码</label>
@@ -62,11 +62,9 @@
       </div>
     </div>
 
-
-
     <div class="weui-btn weui-btn_primary" @click='Register'>注 册</div>
   </div>
-	
+
 </template>
 <script>
 import vToast from './baseComp/toast'
@@ -141,7 +139,7 @@ export default{
           }else {
             alert(result.data)
           }
-            
+
       })
     },
 
@@ -162,8 +160,8 @@ export default{
 
         var params = {
           mobile:this.mobile,
-          time:this.dataUtil.formatTime1(new Date()) 
-          
+          time:this.dataUtil.formatTime1(new Date())
+
         }
         console.log(params)
 
@@ -177,12 +175,12 @@ export default{
         .then(result=>{
           console.log(result)
            if (result.status == '成功') {
-               
+
                 var times = 119
                 var timer = setInterval(function(){
-                  
+
                   if (times > 0) {
-                   
+
                     that.sendName = times + 's'
                     times--
                   }else{

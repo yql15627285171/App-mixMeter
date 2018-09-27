@@ -6,11 +6,11 @@
 export default{
   mounted(){
     window.sessionStorage.setItem('isLogin',true)
-    window.location.href = this.api.url
+    // window.location.href = this.api.url
 
     // 测试的时候跳过授权页
-    // window.sessionStorage.setItem('id','wx_yql')
-    // this.$router.push('main')
+    window.sessionStorage.setItem('id','yql')
+    this.$router.push('main')
    
   }
 }	

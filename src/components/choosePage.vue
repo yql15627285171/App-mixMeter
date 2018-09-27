@@ -13,9 +13,9 @@ export default{
 	methods:{
 		// 获取路径中的值
 		GetQueryString(name){
-		     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
-		     var r = window.location.search.substr(1).match(reg);
-		     if(r!=null)return  unescape(r[2]); return null;
+		    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+		    var r = window.location.search.substr(1).match(reg);
+		    if(r!=null)return  unescape(r[2]); return null;
 		},
 
 		// 发送code值，获取用户是否已存在
@@ -24,6 +24,7 @@ export default{
 		 		mpCode:this.code,
 		 		time:this.dataUtil.formatTime1(new Date())
 		 	}
+
 		 	console.log(JSON.stringify(params));
 		 	
 		 	var encryptParams = {

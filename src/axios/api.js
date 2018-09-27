@@ -5,11 +5,11 @@ export default {
    *基本路径
    */
 
-   // 泰瑞捷
-   baseUrl:'http://api.smart.trjiot.com/webiot.asmx',
+   // 泰瑞捷测试
+   // baseUrl:'http://api.smart.trjiot.com/webiot.asmx',
 
    // 申特
-   // baseUrl:'https://www.trjiot.com/webiot.asmx',
+   baseUrl:'https://www.trjiot.com/webiot.asmx',
 
   
 
@@ -23,9 +23,9 @@ export default {
    LoadBympOpenidForTest:'/LoadBympOpenidForTest',
 
    // 泰瑞捷公众号
-   url:'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx79b555e9247591b2&redirect_uri=http%3a%2f%2fmp.trj.trjiot.com%2f%23%2fchoosePage&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect',
+   // url:'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx79b555e9247591b2&redirect_uri=http%3a%2f%2fmp.trj.trjiot.com%2f%23%2fchoosePage&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect',
    // 申特公众号
-   // url:'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx2116ee6faa2b9cc0&redirect_uri=http%3a%2f%2fmp.smart.trj-china.com%2f%23%2fchoosePage&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect',
+   url:'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx2116ee6faa2b9cc0&redirect_uri=http%3a%2f%2fmp.smart.trj-china.com%2f%23%2fchoosePage&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect',
 
    /**
    *获取回调url

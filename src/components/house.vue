@@ -80,8 +80,9 @@ export default{
 		 		this.loading = false
 		 		console.log(result)
 		 		if (result.status == '成功') {
-		 			console.log("kkk")
-		 			console.log(result.data.Check)
+
+
+		 		// 	console.log(result.data.Check)
 		 			this.checkedRoom = result.data.Check
 		 			this.checkingRoom = result.data.Apply             
 		 		}
